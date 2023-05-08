@@ -3,13 +3,18 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 
+import { BookContextProvider, useBookContext } from "./Context/BookContext";
+
 const rootElement = document.getElementById("root");
 const root = createRoot(rootElement);
 
+export { useBookContext };
 root.render(
   <StrictMode>
     <Router>
-      <App />
+      <BookContextProvider>
+        <App />
+      </BookContextProvider>
     </Router>
   </StrictMode>
 );
