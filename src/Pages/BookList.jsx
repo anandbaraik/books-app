@@ -1,15 +1,18 @@
 import { useBookContext } from "..";
+import BookCard from "../Components/BookCard";
 
 export default function BookList() {
-  const { BookList } = useBookContext;
-  console.log(BookList);
+  const { bookList } = useBookContext();
   return (
-    <div>
-      {BookList?.map(
-        ({ id, title, author, publisher, year, image, price, read }) => {
-          return <div></div>;
-        }
-      )}
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+      }}
+    >
+      {bookList?.map((book) => {
+        return <BookCard key={book.id} {...book} showBtns />;
+      })}
     </div>
   );
 }

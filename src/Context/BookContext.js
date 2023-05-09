@@ -23,7 +23,7 @@ export const BookContextProvider = ({ children }) => {
     try {
       const {
         data: { books, user }
-      } = await fakeFetch("https://example.com/api/books");
+      } = await fakeFetch(URL);
       if (user) setUser(user);
       if (books) setBookList(books);
     } catch ({ status, message }) {
