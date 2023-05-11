@@ -1,10 +1,26 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 export default function Header() {
+  const getStyle = ({ isActive }) => {
+    return isActive ? "menu menu-active" : "menu";
+  };
   return (
     <div>
       <nav>
-        <Link to="/">All Books</Link> <Link to="/favourites">Favourites</Link>{" "}
-        <Link to="/read-books">Read</Link> <Link to="/profile">Profile</Link>
+        <NavLink to="/" className={getStyle}>
+          All Books
+        </NavLink>{" "}
+        {"||"}{" "}
+        <NavLink to="/favourites" className={getStyle}>
+          Favourites
+        </NavLink>{" "}
+        {"||"}{" "}
+        <NavLink to="/read-books" className={getStyle}>
+          Read
+        </NavLink>{" "}
+        {"||"}{" "}
+        <NavLink to="/profile" className={getStyle}>
+          Profile
+        </NavLink>
       </nav>
     </div>
   );

@@ -16,8 +16,12 @@ export const BookContextProvider = ({ children }) => {
   const [readList, setReadList] = useState([]);
   const [favouriteList, setFavouriteList] = useState([]);
 
-  const addToFavouriteHandler = () => {};
-  const markBookAsRead = () => {};
+  const addToFavouriteHandler = (book) => {
+    setFavouriteList((list) => [...list, { ...book }]);
+  };
+  const markBookAsRead = (book) => {
+    setReadList([...readList, { ...book, read: true }]);
+  };
 
   const getBooks = async () => {
     try {
@@ -25,7 +29,11 @@ export const BookContextProvider = ({ children }) => {
         data: { books, user }
       } = await fakeFetch(URL);
       if (user) setUser(user);
-      if (books) setBookList(books);
+      if (books) {
+        setBookList(books);
+        const readBooks = books?.filter(({ read }) => read);
+        setReadList(readBooks);
+      }
     } catch ({ status, message }) {
       console.error(`${status} :  ${message}`);
     }
